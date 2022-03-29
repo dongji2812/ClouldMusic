@@ -1,0 +1,86 @@
+/* pages/index/index.wxss */
+/* 轮播图区域。 */
+.banners {
+  width: 100%;
+  height: 300rpx;
+}
+
+.banners image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 五个图标导航区域。 */
+.navContainer {
+  display: flex;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+.navItem .iconfont {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx 0;
+  background: rgb(240, 19, 19);
+  font-size: 50rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.navContainer text {
+  font-size: 26rpx;
+}
+
+/* 推荐歌曲区域。 */
+.recommendContainer {
+  padding: 20rpx; /* 不要紧挨着边，有点边距。 */
+}
+
+/* 推荐歌曲区域。头部区域。 */
+.recommendContainer .header {
+  padding-bottom: 20rpx;
+}
+.recommendContainer .header .title {
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #666;
+}
+
+.recommendContainer .header .more {
+  float: right;
+  border: 1rpx solid #333;
+  padding: 10rpx 20rpx;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+}
+
+/* 推荐歌曲区域。内容区域。 */
+.recommendScroll {
+  display: flex;
+}
+
+.recommendScroll .scrollItem {
+  width: 200rpx;
+  margin-right: 20rpx;
+}
+
+.recommendScroll .scrollItem image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx; /* 图片添加圆角。 */
+}
+
+.scrollItem text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
