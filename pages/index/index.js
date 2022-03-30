@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerList: []
+    bannerList: [],
+    recommendList:[]
   },
 
   /**
@@ -25,9 +26,15 @@ Page({
       }
     }) */
     let bannerListData = await request('/banner', {type: 2})
-    console.log(result)
+    console.log(bannerListData)
     this.setData({
       bannerList: bannerListData.banners
+    })
+
+    let recommendListData = await request('/personalized', {limit: 10})
+    console.log(recommendListData)
+    this.setData({
+      recommendList: recommendListData.result
     })
   },
 
