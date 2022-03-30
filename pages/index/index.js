@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    bannerList: []
   },
 
   /**
@@ -24,8 +24,11 @@ Page({
         console.log(err)
       }
     }) */
-    let result = await request('/banner', {type: 2})
+    let bannerListData = await request('/banner', {type: 2})
     console.log(result)
+    this.setData({
+      bannerList: bannerListData.banners
+    })
   },
 
   /**
