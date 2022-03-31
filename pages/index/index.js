@@ -8,7 +8,8 @@ Page({
    */
   data: {
     bannerList: [],
-    recommendList:[]
+    recommendList:[],
+    topList: []
   },
 
   /**
@@ -26,16 +27,28 @@ Page({
       }
     }) */
     let bannerListData = await request('/banner', {type: 2})
-    console.log(bannerListData)
+    console.log('得到轮播图数据 成功：', bannerListData)
     this.setData({
       bannerList: bannerListData.banners
     })
 
     let recommendListData = await request('/personalized', {limit: 10})
-    console.log(recommendListData)
+    console.log('得到推荐歌单数据 成功：', recommendListData)
     this.setData({
       recommendList: recommendListData.result
     })
+
+    let index = 0
+    const resArr = []
+    while (index < 5) {
+      const topListData = await request ('/top/list', {idx: index++})
+      const topListItem = {name: topListData.playlist.name, tracks: topListData.playlist.tracks.slice(0, 3)}
+      resArr.push(topListItem)
+      
+      this.setData({
+        topList: resArr
+      })
+    }
   },
 
   /**

@@ -20,10 +20,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.23.2",
+	"libVersion": "2.14.1",
 	"appid": "wx88ed12499fc3e5eb",
 	"projectname": "guiguyunyinyue_study",
 	"debugOptions": {

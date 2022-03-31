@@ -43,27 +43,10 @@
   padding: 20rpx; /* 不要紧挨着边，有点边距。 */
 }
 
-/* 推荐歌曲区域。头部区域。 */
-.recommendContainer .header {
-  padding-bottom: 20rpx;
-}
-.recommendContainer .header .title {
-  font-size: 32rpx;
-  line-height: 80rpx;
-  color: #666;
-}
-
-.recommendContainer .header .more {
-  float: right;
-  border: 1rpx solid #333;
-  padding: 10rpx 20rpx;
-  font-size: 26rpx;
-  border-radius: 30rpx;
-}
-
 /* 推荐歌曲区域。内容区域。 */
 .recommendScroll {
   display: flex;
+  height: 300rpx;
 }
 
 .recommendScroll .scrollItem {
@@ -81,6 +64,54 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 排行榜区域。 */
+.topList {
+  padding: 20rpx;
+}
+
+/* 排行榜区域。内容区域。*/
+.topListSwiper {
+  height: 400rpx;
+}
+
+.swiperItem {
+  width: 96%;
+  background: #fbfbfb;
+}
+
+.title {
+  font-size: 30rpx;
+  line-height: 80rpx;
+}
+
+.musicItem {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.musicItem image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 6rpx;
+}
+
+.musicItem .count {
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.musicItem .musicName {
+  height: 100rpx;
+  line-height: 100rpx;
+  max-width: 400rpx;
+  /* 以下是单行文本溢出隐藏的写法。上面父元素定义了布局是flex，已经是块级元素。*/
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
