@@ -1,0 +1,8 @@
+<view class="personalContainer">
+    <!-- 上半部分用户信息。 -->
+    <view class="user-section">
+        <image class="bg" src="/static/images/personal/bgImg2.jpg"></image>
+    </view>
+    <!-- 下半部分滑动区域。 -->
+    <view class="cover-container"></view>
+</view>
