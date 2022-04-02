@@ -1,1 +1,169 @@
-/* pages/personal/personal.wxss */
+.personalContainer{
+    width: 100%;
+    height: 100%;
+}
+
+/* 上半部分用户信息。 */
+.user-section {
+    height: 520rpx;
+    position: relative;
+    padding: 100rpx 30rpx 0;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    filter: blur(1px);
+}
+
+.user-box {
+    display: flex;
+    align-items: center;
+    position: relative; /* 有z-index的效果 */
+    height: 180rpx;
+    /* z-index: 1; */
+}
+
+.user-box image {
+    width: 130rpx;
+    height: 130rpx;
+    border:5rpx solid #fff;
+    border-radius: 50%;
+}
+
+.user-box text {
+    font-size: 24; /* 单位是？ */
+    color: #303133;
+    margin-left: 20rpx;
+}
+
+.vip-box {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 240rpx;
+    padding: 20rpx 24rpx;
+    background: rgba(0, 0, 0, .7);
+    color: #f7d680;
+    border-radius: 16rpx 16rpx 0 0;
+}
+
+.vip-box image {
+    position: absolute;
+    top: 20rpx;
+    right: 0;
+    width: 380rpx;
+    height: 260rpx;
+}
+
+.vip-box .showvip {
+    font-size: 22rpx;
+    margin-bottom: 28rpx;
+}
+
+.vip-box .showvip .iconfont {
+    color: #f6e5a3;
+    margin-right: 16rpx;
+}
+
+.vip-box .userteam {
+    font-size: 34rpx;
+    margin-top: 10rpx;
+}
+
+.vip-box .userintroduce {
+    font-size: 24rpx;
+    color: #d8cba9;
+    margin-top: 10rpx;
+}
+
+.vip-box .button {
+    position: absolute;
+    top: 16rpx;
+    right: 20rpx;
+    width: 132rpx;
+    height: 40rpx;
+    background: #f9e6af;
+    font-size: 22rpx;
+    color: #36343c;
+    text-align: center;
+    line-height: 40rpx;
+    border-radius: 20rpx;
+}
+
+/* 下半部分滑动区域。 */
+.cover-container {
+    position: relative;
+    margin-top: -150rpx;
+    padding: 0 30rpx;
+    padding-bottom: 20rpx;
+    background: #f5f5f5;
+}
+
+.cover-container image {
+    position:absolute;
+    left: 0;
+    top: -34rpx;
+    width: 100%;
+    height: 36rpx;
+}
+
+.cover-container .nav-box {
+    display: flex;
+    background: #fff;
+    padding: 20rpx 0;
+    border-radius: 15rpx;
+}
+
+.nav-box .nav-item {
+    width: 25%;
+    /* box-sizing: border-box; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+.nav-box .nav-item .iconfont {
+    font-size: 50rpx;
+    color: #d43c33;
+    line-height: 70rpx;
+}
+
+.nav-box .nav-item text {
+    font-size: 22rpx;
+}
+
+.personalContent {
+    margin-top: 20rpx;
+    background: #fff;
+    font-size: 26rpx;
+}
+
+.personalContent .recent-box {
+    padding-left: 20rpx;
+}
+
+.personalContent .recent-box text:first-child {
+    color: #333;
+    line-height: 80rpx;
+}
+
+.personalContent .personal-box {
+    margin-top: 20rpx;
+}
+
+.personalContent .personal-item {
+    height: 80rpx;
+    border-top: 1rpx solid #eee;
+    padding: 10rpx;
+    line-height: 80rpx;
+    color: #333;
+}
+
+.personalContent .personal-item .more {
+    float: right;
+}
