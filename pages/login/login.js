@@ -1,13 +1,12 @@
-let startY = 0, moveY = 0, distanceY = 0
-
+// pages/login/login.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    coverTransform: 'translateY(0)',
-    coverTransition: ''
+    phone: '',
+    password: ''
   },
 
   /**
@@ -17,29 +16,10 @@ Page({
 
   },
 
-  handleTouchStart(event) {
+  handleInput(event) {
+    let type = event.currentTarget.id
     this.setData({
-      coverTransition: ''
-    })
-    startY = event.touches[0].clientY
-  },
-
-  handleTouchMove(event) {
-    moveY = event.touches[0].clientY
-    distanceY = moveY - startY
-    if (distanceY < 0) return
-    if (distanceY >= 80) {
-      distanceY = 80
-    }
-    this.setData({
-      coverTransform: `translateY(${distanceY}rpx)` /* 模板字符串。 */
-    })
-  },
-
-  handleTouchEnd() {
-    this.setData({
-      coverTransform: 'translateY(0)',
-      coverTransition: 'transform 1s linear' /* 过渡的是transform这个属性，这个属性前后的属性值 就是过渡前的值 和 过渡后的结果。 */
+      [type]: event.detail.value
     })
   },
 

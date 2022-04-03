@@ -22,7 +22,14 @@
         </view>
     </view>
     <!-- 下半部分滑动区域。 -->
-    <view class="cover-container">
+    <view 
+        class="cover-container"
+        bindtouchstart="handleTouchStart"
+        bindtouchmove="handleTouchMove"
+        bindtouchend="handleTouchEnd"
+        style="transform: {{coverTransform}}; transition:{{coverTransition}}" 
+    >
+    <!-- data中coverTransform的属性值赋值给transform， coverTransition的属性值赋值给transition -->
         <image src="/static/images/personal/arc.png"></image>
         <view class="nav-box"> 
             <view class="nav-item"> <!-- 这里每个都用nav-item。-->

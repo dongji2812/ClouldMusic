@@ -23,7 +23,7 @@
 .user-box {
     display: flex;
     align-items: center;
-    position: relative; /* 有z-index的效果 */
+    position: relative; /* 目的是 有z-index的效果？？ */
     height: 180rpx;
     /* z-index: 1; */
 }
@@ -47,7 +47,7 @@
     position: relative;
     height: 240rpx;
     padding: 20rpx 24rpx;
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, .7); /* padding不会影响背景，padding处照样有背景。 */
     color: #f7d680;
     border-radius: 16rpx 16rpx 0 0;
 }
@@ -120,7 +120,7 @@
 }
 
 .nav-box .nav-item {
-    width: 25%;
+    width: 25%; /* flex布局下的子元素 平均分摊父元素空间。 */
     /* box-sizing: border-box; */
     display: flex;
     flex-direction: column;
