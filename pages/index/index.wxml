@@ -42,7 +42,8 @@
         <image src="/static/images/nvsheng.jpg"></image>
         <text>啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</text>
       </view> -->
-      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" wx:for-item="recommendItem">
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" wx:for-item="recommendItem"> 
+        <!-- 是scroll-view标签下的view标签遍历数组。 -->
         <image src="{{recommendItem.picUrl}}"></image>
         <text>{{recommendItem.name}}</text>
       </view>
@@ -63,24 +64,9 @@
             <text class="count">{{index + 1}}</text>
             <text class="musicName">{{musicItem.name}}</text>
           </view>          
-          <view class="musicItem">
-            <image src="/static/images/nvsheng.jpg"></image>
-            <text class="count">1</text>
-            <text class="musicName">光辉岁</text>
-          </view>
         </view>
       </swiper-item>
     </swiper>
   </view>
 
-
-
-
-
-
-
-
-
 </view>
-
-

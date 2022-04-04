@@ -9,7 +9,7 @@ export default (url, data={}, method='GET') => {
             method,
             success: (res) => {
               console.log('请求成功：', res)
-              resolve(res.data)
+              resolve(res.data) /* 固定的都这么写，测试接口的工具 默认 也是返回这个值。 */
             },
             fail: (err) => {
               console.log('请求失败：', err)

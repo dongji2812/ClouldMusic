@@ -147,9 +147,22 @@
     padding-left: 20rpx;
 }
 
-.personalContent .recent-box text:first-child {
+.personalContent .recent-box text{
     color: #333;
     line-height: 80rpx;
+}
+
+.personalContent .recent-box .recentScroll {
+    display: flex;
+    height: 200rpx;
+}
+
+.personalContent .recent-box .recentScroll image {
+    position: relative; /* 每个image要占据原来的位置。  */
+    width: 200rpx;
+    height: 200rpx;
+    margin-right: 20rpx;
+    border-radius: 10rpx; /* 图片都有边框的。 */
 }
 
 .personalContent .personal-box {

@@ -1,3 +1,5 @@
+import request from '../../utils/request'
+
 let startY = 0, moveY = 0, distanceY = 0
 
 Page({
@@ -7,14 +9,32 @@ Page({
    */
   data: {
     coverTransform: 'translateY(0)',
-    coverTransition: ''
+    coverTransition: '',
+    userInfo: {},
+    recentPlayList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const userInfo = wx.getStorageSync('userInfo') /* 得到本地存储的json对象的数据。 */
+    this.setData({
+      userInfo: JSON.parse(userInfo) /* json对象转换为js对象，赋值给data中的userInfo。 */
+    })
+    this.getrecentPlayList(this.data.userInfo.userId) /* 调用该函数。 */
+  },
 
+  async getrecentPlayList(userId) {
+    const recentPlayListData = await request('/user/record', {uid: userId, type: 1})
+    let index = 0
+    const recentPlayList = recentPlayListData.weekData.splice(0, 10).map(item => {
+      item.id = index++
+      return item
+    })
+    this.setData({
+      recentPlayList
+    })
   },
 
   handleTouchStart(event) {
@@ -43,6 +63,11 @@ Page({
     })
   },
 
+  toLogin() {
+    wx.navigateTo({
+      url: '/pages/login/login' /* 这里写绝对路径，不然是在当前路径下寻找。 */
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

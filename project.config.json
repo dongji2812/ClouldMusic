@@ -37,7 +37,7 @@
     "useIsolateContext": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.14.0",
+  "libVersion": "2.22.1",
   "appid": "wx88ed12499fc3e5eb",
   "projectname": "guiguyunyinyue_study",
   "debugOptions": {

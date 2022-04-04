@@ -2,12 +2,13 @@
     <!-- 上半部分用户信息。 -->
     <view class="user-section">
         <image class="bg" src="/static/images/personal/bgImg2.jpg"></image>
-        <view class="user-box">
+        <view class="user-box" bindtap="toLogin">
             <view>
-                <image src="/static/images/personal/missing-face.png"></image>
+                <image src='{{userInfo.avatarUrl ? userInfo.avatarUrl : "/static/images/personal/missing-face.png"}}'></image>
+                <!-- 后面的静态图片不要忘了加 ""。 -->
             </view>
             <view>
-                <text>游客</text>
+                <text>{{userInfo.nickname ? userInfo.nickname :'游客'}}</text>
             </view>
         </view>
         <view class="vip-box">
@@ -52,7 +53,12 @@
         <view class="personalContent">
             <view class="recent-box">
                 <text>最近播放</text>
-                <view>暂无播放记录</view>
+                <scroll-view wx:if="{{recentPlayList.length}}" class="recentScroll" scroll-x enable-flex>
+                    <view wx:for="{{recentPlayList}}" wx:key="id">
+                        <image src="{{item.song.al.picUrl}}"></image>
+                    </view>
+                </scroll-view>
+                <view wx:else>暂无播放记录</view>
             </view>
             <view class="personal-box">
                 <view class="personal-item">
