@@ -1,1 +1,43 @@
-/* pages/video/video.wxss */
+/* 头部区域。 */
+.header {
+    display: flex;
+    padding: 10rpx;
+}
+
+.header image {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.header .search {
+    flex: 1;
+    border: 1rpx solid #eee;
+    margin: 0 20rpx;
+    font-size: 26rpx;
+    color: #d43c33;
+    text-align: center;
+    line-height: 60rpx;
+}
+
+/* 导航区域。 */
+.navScroll {
+    display: flex;
+    white-space: nowrap;
+    height: 60rpx;
+}
+
+.navScroll .navItem { /* flex布局，横向排列。子元素大小由内容撑开，不能设置其宽度。可以设置其高度。 */
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    height: 60rpx; /* 父盒子content内容区域的高度是60rpx，子盒子的盒子大小最大为60rpx。 */
+    line-height: 60rpx;
+}
+
+.navScroll .navItem .navContent { 
+    height: 60rpx;
+    box-sizing: border-box; /* 下面的border不会占据盒子高度，盒子高度仍是height60rpx。这样父盒子才能装得下该盒子。 */
+}
+
+.navScroll .navItem .active {
+    border-bottom: 1rpx solid #d43c33;
+}

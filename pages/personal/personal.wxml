@@ -54,7 +54,8 @@
             <view class="recent-box">
                 <text>最近播放</text>
                 <scroll-view wx:if="{{recentPlayList.length}}" class="recentScroll" scroll-x enable-flex>
-                    <view wx:for="{{recentPlayList}}" wx:key="id">
+                    <view wx:for="{{recentPlayList}}" wx:key="id"> 
+                        <!-- view的大小是由其内容决定的，不能设置view的宽度。 -->
                         <image src="{{item.song.al.picUrl}}"></image>
                     </view>
                 </scroll-view>

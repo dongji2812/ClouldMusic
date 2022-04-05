@@ -172,7 +172,7 @@
 .personalContent .personal-item {
     height: 80rpx;
     border-top: 1rpx solid #eee;
-    padding: 10rpx;
+    padding: 20rpx;
     line-height: 80rpx;
     color: #333;
 }

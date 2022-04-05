@@ -17,10 +17,10 @@ Page({
 
   },
 
-  handleInput(event) {
+  handleInput(event) { /* 这个函数的作用是更新data中的数据。 */
     let type = event.currentTarget.id
     this.setData({
-      [type]: event.detail.value
+      [type]: event.detail.value /* event.detail.value是input内输入的值。 */
     })
   },
 
@@ -55,7 +55,7 @@ Page({
       title: '前端验证通过',
     }) */
 
-    const result = await request('/login/cellphone', {phone, password})
+    const result = await request('/login/cellphone', {phone, password, isLogin: true})
     if (result.code === 200) {
       wx.showToast({
         title: '登录成功',
