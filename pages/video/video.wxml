@@ -5,10 +5,58 @@
         <view class="search">搜索中心</view>
         <image src="/static/images/logo.png"></image>
     </view>
+
     <!-- 导航区域。 -->
-    <scroll-view class="navScroll" scroll-x enable-flex>
-        <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id">  <!-- 变量不要忘记加{{}}。 -->
+    <scroll-view class="navScroll" scroll-x enable-flex scroll-into-view="{{'scroll' + navId}}" scroll-with-animation>
+        <!-- scroll-into-view="{{'scroll' + navId}}"的值 和 每个子元素id="{{'scroll' + item.id}}的值 相对应。 -->
+        <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id" id="{{'scroll' + item.id}}">  
+            <!-- 变量不要忘记加{{}}。 -->
+            <!-- wx:key="id"这里的id是每个item自带的独立属性。 -->
             <view class="navContent {{navId === item.id?'active':''}}" bindtap="changeNav" id="{{item.id}}">{{item.name}}</view>
+            <!-- 这里的类 是动态变化的。 -->
+            <!-- id="{{item.id}}把id传给事件对象。 -->
         </view>
     </scroll-view>
+
+    <!-- 视频区域。 -->
+    <scroll-view class="videoScroll" scroll-y>  
+        <view class="videoItem" wx:for="{{videoList}}" wx:key="id"> <!-- 这个id是自己自定义 给每个item加的。 -->
+            <!-- 视频。 -->
+            <video
+                wx:if="{{videoId === item.data.vid}}"
+                class="common" 
+                src="{{item.data.urlInfo.url}}" 
+                bindplay="handlePlay" 
+                id="{{item.data.vid}}" 	
+                poster="{{item.data.coverUrl}}"  
+                object-fit="fill"
+                bindtimeupdate="handleTimeUpdate"
+                bindended="handleEnded"
+            ></video>
+            <!-- poster是视频封面。 object-fit是视频如何在video容器中呈现。 -->
+            <!-- bindtimeupdate是视频实时播放时的回调。 bindended是视频播放结束时的回调。 -->
+            <image wx:else class="common" src="{{item.data.coverUrl}}" bindtap="handlePlay" id="{{item.data.vid}}"></image>
+            <!-- 视频内容介绍。 -->
+            <view class="content">{{item.data.title}}</view>
+            <!-- 视频作者及视频热度。 -->
+            <view class="footer">
+                <image src="{{item.data.creator.avatarUrl}}"></image>
+                <text class="nickName">{{item.data.creator.nickname}}</text>
+                <view class="comments_praised">
+                    <text class="item">
+                        <text class="iconfont icon-xihuan"></text>
+                        <text class="count">{{item.data.praisedCount}}</text>
+                    </text>
+                    <text class="item">
+                        <text class="iconfont icon-pinglun"></text>
+                        <text class="count">{{item.data.commentCount}}</text>
+                    </text>
+                    <button class="item btn"> <!-- 两个类名。 -->
+                        <text class="iconfont icon-gengduo"></text>
+                    </button>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+
 </view>

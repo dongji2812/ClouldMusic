@@ -109,7 +109,7 @@
 .musicItem .musicName {
   height: 100rpx;
   line-height: 100rpx;
-  max-width: 400rpx;
+  max-width: 400rpx; /* 最大宽度是该值，最小宽度随视口大小动态变化。 */
   /* 以下是单行文本溢出隐藏的写法。上面父元素定义了布局是flex，已经是块级元素。*/
   white-space: nowrap;
   overflow: hidden;
