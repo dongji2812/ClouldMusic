@@ -22,7 +22,7 @@
 /* 导航区域。 */
 .navScroll {
     display: flex;
-    white-space: nowrap;
+    white-space: nowrap; /* navScroll横向滑动，当横向宽度不够时，默认将文字换行。这里设置为不换行*/
     height: 60rpx;
 }
 
@@ -45,6 +45,7 @@
 /* 视频区域。 */
 .videoScroll {
     height: calc(100vh - 154rpx); /* 不同的机型，scroll-view的高度应该是不同的。 这里需要动态计算。 */
+     /* 给scroll-view一个固定高度，才能实现scroll-view竖直方向上的滚动。 */
     margin-top: 10rpx;
 }
 

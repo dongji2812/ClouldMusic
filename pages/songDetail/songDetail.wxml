@@ -1,0 +1,15 @@
+<view class="songDetailContainer">
+    <text class="musician">beyond</text>
+    <!-- 摇杆图片。 -->
+    <view class="circle"></view>
+    <image class="needle {{isPlay && 'needleRomate'}}" src="/static/images/song/needle.png"></image>
+    <!-- needleRomate是动态类名。应该写在{{}}中。 {{}}中是变量，类名要加''，不然就会当做变量。双引号中应该加单引号。
+         前面isPlay为真，才会执行后面。或者用三元运算符isPlay？'needleRomate':''
+    -->
+
+    <!-- 磁盘图片+歌曲图片。 -->
+    <view class="discContainer {{isPlay && 'discAnimation'}}">
+        <image class="disc" src="/static/images/song/disc.png"></image>
+        <image class="musicPic" src="/static/images/nvsheng.jpg"></image>
+    </view>
+</view>

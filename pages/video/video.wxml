@@ -19,7 +19,21 @@
     </scroll-view>
 
     <!-- 视频区域。 -->
-    <scroll-view class="videoScroll" scroll-y>  
+    <scroll-view 
+        class="videoScroll" 
+        scroll-y 
+        refresher-enabled 
+        bindrefresherrefresh="handleRefresher" 
+        refresher-triggered="{{isTriggered}}"
+        bindscrolltolower="handleToLower"
+    >
+    <!-- refresher-enabled是开启/允许 自定义刷新。 
+        bindrefresherrefresh是 设置自定义刷新时的回调。 ""内表示是回调函数。
+        refresher-triggered表示 刷新是否被触发。  {{}}内表示是变量。
+        若刷新被触发则 自动显示三个点以及页面向下拉伸，但 关闭三个点以及页面复位 需要手动操作。  
+        bindscrolltolower是 设置scroll-view滚动到底部/右边时，内容已全部加载完毕时的回调。
+    -->
+
         <view class="videoItem" wx:for="{{videoList}}" wx:key="id"> <!-- 这个id是自己自定义 给每个item加的。 -->
             <!-- 视频。 -->
             <video
@@ -34,7 +48,7 @@
                 bindended="handleEnded"
             ></video>
             <!-- poster是视频封面。 object-fit是视频如何在video容器中呈现。 -->
-            <!-- bindtimeupdate是视频实时播放时的回调。 bindended是视频播放结束时的回调。 -->
+            <!-- bindtimeupdate是 设置视频实时播放时的回调。 bindended是 设置视频播放结束时的回调。 -->
             <image wx:else class="common" src="{{item.data.coverUrl}}" bindtap="handlePlay" id="{{item.data.vid}}"></image>
             <!-- 视频内容介绍。 -->
             <view class="content">{{item.data.title}}</view>
@@ -51,7 +65,7 @@
                         <text class="iconfont icon-pinglun"></text>
                         <text class="count">{{item.data.commentCount}}</text>
                     </text>
-                    <button class="item btn"> <!-- 两个类名。 -->
+                    <button class="item btn" open-type="share"> <!-- 两个类名。 -->
                         <text class="iconfont icon-gengduo"></text>
                     </button>
                 </view>

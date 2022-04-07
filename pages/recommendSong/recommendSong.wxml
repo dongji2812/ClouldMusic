@@ -1,0 +1,30 @@
+<view class="recommendSongContainer">
+    <!-- 头部区域。 -->
+    <view class="header">
+        <image src="/static/images/recommendSong/recommendSong.jpg"></image>
+        <view class="date">
+            <text class="day">{{day}} / </text>
+            <text class="month">{{month}}</text>
+        </view>
+    </view>
+    <!-- 列表区域。 -->
+    <view class="listContainer">
+        <!-- 列表头部区域。 -->
+        <view class="header">
+            <text>播放全部</text>
+            <text class="changeMore">多选</text>
+        </view>
+        <!-- 歌曲区域。 -->
+        <scroll-view class="listScroll" scroll-y>
+            <view class="scrollItem" wx:for="{{recommendList}}"  wx:key="id">
+                <image src="{{item.album.picUrl}}"></image>
+                <view class="musicInfo">
+                    <text class="musicName">{{item.name}}</text> 
+                    <text class="musician">{{item.artists[0].name}}</text> 
+                    <!-- 作者有很多，所以artists是数组的形式，这里只取第一个作者的信息。 -->
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+        </scroll-view>
+    </view>
+</view>

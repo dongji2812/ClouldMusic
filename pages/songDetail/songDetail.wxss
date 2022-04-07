@@ -1,0 +1,71 @@
+.songDetailContainer {
+    display: flex;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 摇杆图片。 */
+.songDetailContainer .circle {
+    position: relative;
+    z-index: 100;
+    width: 60rpx;
+    height: 60rpx;
+    margin: 10rpx 0;
+    background-color: #fff;
+    border-radius: 50%;
+}
+.songDetailContainer .needle {
+    position: relative;
+    left: 60rpx;
+    top: -40rpx;
+    z-index: 99;
+    width: 192rpx;
+    height: 274rpx;
+    transform: rotate(-20deg);
+    transform-origin: 40rpx 0; /* 设置旋转中心点。 */
+    transition: transform 1s;
+}
+
+.songDetailContainer .needleRomate {
+    transform: rotate(0deg); /* 同一元素，相同属性会被覆盖。 其他属性不变。 */
+}
+
+/* 磁盘图片+歌曲图片。 */
+.songDetailContainer .discContainer {
+    position: relative;
+    top: -170rpx;
+    width: 598rpx;
+    height: 598rpx;
+}
+
+.songDetailContainer .discContainer .disc {
+    width: 598rpx;
+    height: 598rpx;
+}
+
+.songDetailContainer .discContainer .musicPic {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 370rpx;
+    height: 370rpx;
+    border-radius: 50%;
+}
+
+.discAnimation {
+    animation: disc 4s linear 0.5s infinite;
+}
+
+@keyframes disc{
+    from{
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
