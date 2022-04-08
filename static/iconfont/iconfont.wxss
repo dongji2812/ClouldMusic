@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3285745 */
-  src: url('//at.alicdn.com/t/font_3285745_8yqgt3bgvcu.woff2?t=1649210352976') format('woff2'),
-       url('//at.alicdn.com/t/font_3285745_8yqgt3bgvcu.woff?t=1649210352976') format('woff'),
-       url('//at.alicdn.com/t/font_3285745_8yqgt3bgvcu.ttf?t=1649210352976') format('truetype');
+  src: url('//at.alicdn.com/t/font_3285745_znzjfwyxem.woff2?t=1649392427890') format('woff2'),
+       url('//at.alicdn.com/t/font_3285745_znzjfwyxem.woff?t=1649392427890') format('woff'),
+       url('//at.alicdn.com/t/font_3285745_znzjfwyxem.ttf?t=1649392427890') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,30 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-liebiao:before {
+  content: "\e602";
+}
+
+.icon-shangyishoushangyige:before {
+  content: "\e78a";
+}
+
+.icon-xiayigexiayishou:before {
+  content: "\e7a5";
+}
+
+.icon-bofang:before {
+  content: "\e624";
+}
+
+.icon-zanting:before {
+  content: "\e62a";
+}
+
+.icon-24gl-shuffle:before {
+  content: "\ea75";
 }
 
 .icon-gengduo:before {

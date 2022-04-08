@@ -1,5 +1,5 @@
 <view class="songDetailContainer">
-    <text class="musician">beyond</text>
+    <text class="musician">{{song.ar[0].name}}</text>
     <!-- 摇杆图片。 -->
     <view class="circle"></view>
     <image class="needle {{isPlay && 'needleRomate'}}" src="/static/images/song/needle.png"></image>
@@ -10,6 +10,15 @@
     <!-- 磁盘图片+歌曲图片。 -->
     <view class="discContainer {{isPlay && 'discAnimation'}}">
         <image class="disc" src="/static/images/song/disc.png"></image>
-        <image class="musicPic" src="/static/images/nvsheng.jpg"></image>
+        <image class="musicPic" src="{{song.al.picUrl}}"></image>
+    </view>
+
+    <!-- 底部区域。 -->
+    <view class="musicControl">
+        <text class="iconfont icon-24gl-shuffle"></text>
+        <text class="iconfont icon-shangyishoushangyige"></text>
+        <text class="iconfont big {{isPlay?'icon-zanting':'icon-bofang'}}" bindtap="handleMusicPlay"></text>
+        <text class="iconfont icon-xiayigexiayishou"></text>
+        <text class="iconfont icon-liebiao"></text>
     </view>
 </view>

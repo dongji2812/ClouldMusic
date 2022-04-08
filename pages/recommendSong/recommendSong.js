@@ -43,6 +43,13 @@ Page({
       recommendList: recommendListData.recommend
     })
   },
+
+  toSongDetail(event) {
+    const song = event.currentTarget.dataset.song /* 取出传入事件 的对象。 */
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?musicId=' + song.id /* 携带数据 去新的路由界面。 */
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

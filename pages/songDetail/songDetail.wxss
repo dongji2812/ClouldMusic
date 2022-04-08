@@ -1,5 +1,6 @@
 .songDetailContainer {
     display: flex;
+    position: relative;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     flex-direction: column;
@@ -68,4 +69,27 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+/*  底部区域。 */
+.songDetailContainer .musicControl {
+    position: absolute; /* 以有定位的父元素可以，以文档页面也可以。 */
+    bottom: 40rpx;
+    left: 0;
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #fff;
+}
+
+.songDetailContainer .musicControl .iconfont {
+    width: 20%;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 50rpx;
+}
+
+.songDetailContainer .musicControl .big {
+    font-size: 80rpx;
 }
