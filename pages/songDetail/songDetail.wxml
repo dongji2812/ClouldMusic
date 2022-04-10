@@ -16,9 +16,9 @@
     <!-- 底部区域。 -->
     <view class="musicControl">
         <text class="iconfont icon-24gl-shuffle"></text>
-        <text class="iconfont icon-shangyishoushangyige"></text>
+        <text class="iconfont icon-shangyishoushangyige" bindtap="handleSwitch" id="pre"></text>
         <text class="iconfont big {{isPlay?'icon-zanting':'icon-bofang'}}" bindtap="handleMusicPlay"></text>
-        <text class="iconfont icon-xiayigexiayishou"></text>
+        <text class="iconfont icon-xiayigexiayishou" bindtap="handleSwitch" id="next"></text>
         <text class="iconfont icon-liebiao"></text>
     </view>
 </view>

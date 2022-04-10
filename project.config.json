@@ -17,11 +17,15 @@
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
+    "useIsolateContext": true,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
@@ -30,11 +34,7 @@
     "minifyWXML": true,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "ignoreUploadUnusedFiles": true,
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
-    "useIsolateContext": true
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.22.1",

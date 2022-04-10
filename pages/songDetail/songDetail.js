@@ -1,4 +1,7 @@
+import PubSub from 'pubsub-js'
 import request from '../../utils/request'
+
+const appInstance = getApp() //每个页面都能获取到 应用实例。
 
 Page({
 
@@ -9,7 +12,7 @@ Page({
     isPlay: false,
     musicId: '',
     song: {},
-    //musicLink: '' /* 音乐链接，mp3格式的。 */
+    musicLink: '' /* 音乐链接，mp3格式的。 */
   },
 
   /**
@@ -21,12 +24,24 @@ Page({
     this.setData({
       musicId
     })
+    
+    /* 加载时候先判断，是否该音乐在播放。如果不是就还按照data中的数据，如果是更改data中的状态。 */
+    if (appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === musicId) {
+      this.setData({
+        isPlay: true
+      })
+    }
+
     this.getMusicInfo(musicId)
 
+    /* 创建音乐实例，保存到this中。 */
     this.backgroundAudioManager = wx.getBackgroundAudioManager()
-    /* 实例的监听函数：播放/暂停/停止。 */
-    this.backgroundAudioManager.onPlay(() => { /* 该事件的参数是 一个回调函数。 */
+
+    /* 实例的监听函数们：播放/暂停/停止。
+       监听函数的作用是 监听isPlay的值，更新到data中。*/
+    this.backgroundAudioManager.onPlay(() => { /* 该事件的参数是一个回调函数，事件一触发就调用该回调函数。 */
       this.changePlayState(true)
+      appInstance.globalData.musicId = musicId /* 修改实例对象中的状态。 */
     })
     this.backgroundAudioManager.onPause(() => {
       this.changePlayState(false)
@@ -43,8 +58,8 @@ Page({
       isPlay
     }) */
 
-    const {musicId} = this.data
-    this.musicControl(isPlay, musicId)
+    const {musicId, musicLink} = this.data
+    this.musicControl(isPlay, musicId, musicLink)
   },
 
   /* 获取某音乐 详细信息的函数。 */
@@ -59,15 +74,19 @@ Page({
   },
 
   /* 播放/暂停 的功能函数。单独拎出来写了，没有写在点击播放/暂停按钮 的回调中。 */
-  async musicControl(isPlay, musicId) {
+  async musicControl(isPlay, musicId, musicLink) {
     if (isPlay) {
-      const musicLinkData = await request('/song/url', {id: musicId})
-      const musicLink = musicLinkData.data[0].url
-
+      if (!musicLink) { /* 如果相同歌曲播放/暂停，不需要再次发请求。   性能优化，控制函数的形参musicLink，传与不传决定是否发请求。*/
+        const musicLinkData = await request('/song/url', {id: musicId})
+        musicLink = musicLinkData.data[0].url
+        this.setData({
+          musicLink
+        })
+      }
       this.backgroundAudioManager.src = musicLink
       this.backgroundAudioManager.title = this.data.song.name
     } else {
-      this.backgroundAudioManager.pause()
+      this.backgroundAudioManager.pause() /* 实例暂停音乐，跟实例的监听函数们不同。 */
     }
   },
 
@@ -77,6 +96,22 @@ Page({
     this.setData({
       isPlay
     })
+    appInstance.globalData.isMusicPlay = isPlay /* 修改实例对象中的状态。 */
+  },
+
+  /* 点击上一首/下一首的回调函数。 */
+  handleSwitch(event) {
+    const type = event.currentTarget.id
+
+    this.backgroundAudioManager.stop() /* 停止当前音乐。 */
+    PubSub.subscribe('musicId', (msg, musicId) => { /* 订阅消息/绑定事件。 某事件的回调函数会累加，所以每次订阅后都应该取消订阅/解绑事件。*/ 
+      //console.log(musicId)
+      this.getMusicInfo(musicId) /* 点击切换上/下一首后，更新当前音乐详细信息。 */
+      this.musicControl(true, musicId) /* 点击切换上/下一首后，实现音乐自动播放。  不传第三个参数，形参值为undefined。 */
+      PubSub.unsubscribe('musicId') /* 取消订阅/解绑事件。 某事件的回调函数执行后，再把该事件的回调函数清除掉。*/
+    })
+
+    PubSub.publish('switchType', type) /* 发布消息/触发事件。 */
   },
 
   /**

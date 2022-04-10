@@ -1,0 +1,22 @@
+{
+  "name": "clouldmusic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongji2812/ClouldMusic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dongji2812/ClouldMusic/issues"
+  },
+  "homepage": "https://github.com/dongji2812/ClouldMusic#readme",
+  "dependencies": {
+    "pubsub-js": "^1.9.4"
+  }
+}

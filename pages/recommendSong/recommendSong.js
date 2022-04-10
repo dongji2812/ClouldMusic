@@ -1,3 +1,4 @@
+import PubSub from 'pubsub-js'
 import request from '../../utils/request'
 
 // pages/recommendSong/recommendSong.js
@@ -9,7 +10,8 @@ Page({
   data: {
     day: '',
     month: '',
-    recommendList: []
+    recommendList: [],
+    index: 0
   },
 
   /**
@@ -35,6 +37,25 @@ Page({
     })
 
     this.getReCommendList()
+
+    /* 把订阅写在onload中。因为onload中的代码只执行一次，订阅只需要发生一次，相当于监视，坐等发布消息/事件触发。
+       订阅消息/绑定事件。*/
+    PubSub.subscribe('switchType', (msg, type) => {
+      //console.log(msg, type)
+      let {recommendList, index} = this.data /* 因为index要被修改，所以是let。 */
+      if (type === 'pre') {
+        (index === 0) && (index = recommendList.length) /* 点击上一首按钮时，要考虑当前歌曲是第一首的情况。 */
+        index -= 1
+      } else {
+        (index === recommendList.length - 1) && (index = -1) /* 点击下一首按钮时，要考虑当前歌曲是最后一首的情况。 */
+        index += 1
+      }
+      this.setData({
+        index
+      })
+      const musicId = recommendList[index].id
+      PubSub.publish('musicId', musicId) /* 发布消息/触发事件。 */
+    })
   },
 
   async getReCommendList() {
@@ -45,9 +66,12 @@ Page({
   },
 
   toSongDetail(event) {
-    const song = event.currentTarget.dataset.song /* 取出传入事件 的对象。 */
+    const {song, index} = event.currentTarget.dataset /* 取出传入事件的 对象 和 下标。 */
     wx.navigateTo({
       url: '/pages/songDetail/songDetail?musicId=' + song.id /* 携带数据 去新的路由界面。 */
+    })
+    this.setData({
+      index
     })
   },
   /**
