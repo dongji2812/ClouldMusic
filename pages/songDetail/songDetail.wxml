@@ -13,6 +13,16 @@
         <image class="musicPic" src="{{song.al.picUrl}}"></image>
     </view>
 
+    <!-- 进度条区域。 -->
+    <view class="progressControl">
+        <text>{{currentTime}}</text>
+        <view class="barControl">
+            <view class="barCurrentTime" style="width: {{currentWidth + 'rpx'}}"> <!-- 加单位。注意两个位置 都需要引号。 -->
+                <view class="circle"></view>
+            </view>
+        </view>
+        <text>{{durationTime}}</text>
+    </view>
     <!-- 底部区域。 -->
     <view class="musicControl">
         <text class="iconfont icon-24gl-shuffle"></text>

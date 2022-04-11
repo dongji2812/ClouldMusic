@@ -34,7 +34,7 @@ Page({
       return
     }
 
-    const phoneReg = /^1(3|4|5|6|7|8|9)\d{9}$/
+    const phoneReg = /^1(3|4|5|6|7|8|9)\d{9}$/ /* 以1开头，第二位是3到9，结尾是任意数字9位。 */
     if (!phoneReg.test(phone)) {
       wx.showToast({
         title: '手机号格式错误',

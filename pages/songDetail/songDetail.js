@@ -1,4 +1,5 @@
 import PubSub from 'pubsub-js'
+import moment from 'moment'
 import request from '../../utils/request'
 
 const appInstance = getApp() //每个页面都能获取到 应用实例。
@@ -12,7 +13,10 @@ Page({
     isPlay: false,
     musicId: '',
     song: {},
-    musicLink: '' /* 音乐链接，mp3格式的。 */
+    musicLink: '', /* 音乐链接，mp3格式的。 */
+    currentTime: '00:00',
+    durationTime: '00:00',
+    currentWidth: 0
   },
 
   /**
@@ -37,17 +41,35 @@ Page({
     /* 创建音乐实例，保存到this中。 */
     this.backgroundAudioManager = wx.getBackgroundAudioManager()
 
-    /* 实例的监听函数们：播放/暂停/停止。
-       监听函数的作用是 监听isPlay的值，更新到data中。*/
+    /* 实例的监听函数们：播放/暂停/停止/自然结束/实时播放。
+       监听函数的作用是一旦播放/暂停/停止 就会执行该回调函数。 监听isPlay的值，更新到data中。*/
     this.backgroundAudioManager.onPlay(() => { /* 该事件的参数是一个回调函数，事件一触发就调用该回调函数。 */
       this.changePlayState(true)
-      appInstance.globalData.musicId = musicId /* 修改实例对象中的状态。 */
+      appInstance.globalData.musicId = musicId /* 修改 全局实例对象中 的状态。 */
     })
     this.backgroundAudioManager.onPause(() => {
       this.changePlayState(false)
     })
-    this.backgroundAudioManager.onStop(() => {
+    this.backgroundAudioManager.onStop(() => { /* 用户点击x号，手动关闭音乐。 */
       this.changePlayState(false)
+    })
+    this.backgroundAudioManager.onEnded(() => {
+      PubSub.publish('switchType', 'next') /* 发布消息，切换为下一首。  也能实现 点击上一首/下一首的回调函数中的 自动播放？？*/
+     /* 根本就不会发请求。 */
+      this.setData({
+        currentTime: '00:00',
+        currentWidth: 0
+      })
+    })
+    this.backgroundAudioManager.onTimeUpdate(() => {
+      const currentTime = moment(this.backgroundAudioManager.currentTime * 1000).format('mm:ss') /* moment()内传入的数值 单位是ms。 */
+      /* this.backgroundAudioManager.currentTime是歌曲播放的实时时间，单位是s。
+         this.backgroundAudioManager.duration是歌曲的总时长，单位是s。 */
+      let currentWidth = this.backgroundAudioManager.currentTime/this.backgroundAudioManager.duration * 450 /* 比例关系。 */
+      this.setData({
+        currentTime,
+        currentWidth
+      })
     })
   },
 
@@ -65,8 +87,10 @@ Page({
   /* 获取某音乐 详细信息的函数。 */
   async getMusicInfo(musicId) {
     const songData = await request('/song/detail', {ids: musicId})
+    const durationTime = moment(songData.songs[0].dt).format('mm:ss') /* 给歌曲总的毫秒数 转换为 指定的时间格式。 */
     this.setData({
-      song: songData.songs[0] /* songs是数组的形式，只包含一个对象，取它的元素是对象。 */
+      song: songData.songs[0], /* songs是数组的形式，只包含一个对象，取它的元素是对象。 */
+      durationTime 
     })
     wx.setNavigationBarTitle({ /* 动态设置导航栏 为歌曲名字。 */
       title: this.data.song.name
@@ -104,11 +128,12 @@ Page({
     const type = event.currentTarget.id
 
     this.backgroundAudioManager.stop() /* 停止当前音乐。 */
-    PubSub.subscribe('musicId', (msg, musicId) => { /* 订阅消息/绑定事件。 某事件的回调函数会累加，所以每次订阅后都应该取消订阅/解绑事件。*/ 
+    PubSub.subscribe('musicId', (msg, musicId) => { /* 订阅消息/绑定事件。*/ 
       //console.log(musicId)
       this.getMusicInfo(musicId) /* 点击切换上/下一首后，更新当前音乐详细信息。 */
       this.musicControl(true, musicId) /* 点击切换上/下一首后，实现音乐自动播放。  不传第三个参数，形参值为undefined。 */
-      PubSub.unsubscribe('musicId') /* 取消订阅/解绑事件。 某事件的回调函数执行后，再把该事件的回调函数清除掉。*/
+      PubSub.unsubscribe('musicId')  /* 取消订阅/解绑事件。 */
+      /* 某事件的回调函数会累加，所以每次订阅后都应该取消订阅/解绑事件。*/
     })
 
     PubSub.publish('switchType', type) /* 发布消息/触发事件。 */

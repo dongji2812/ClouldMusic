@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dongji2812/ClouldMusic#readme",
   "dependencies": {
+    "moment": "^2.29.2",
     "pubsub-js": "^1.9.4"
   }
 }

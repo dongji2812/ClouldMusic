@@ -1,0 +1,132 @@
+.searchContainer {
+    padding: 0 20rpx;
+}
+
+/* 头部区域。 */
+.header {
+    display: flex;
+    height: 60rpx;
+    line-height: 60rpx;
+    padding: 10rpx 0;
+}
+
+.header .searchBox {
+    flex: 1; /* 在不同的机型上 尺寸自适应。 */
+    position: relative;
+    background: rgba(237, 237, 237, 0.3); /* 背景颜色。 */
+    border-radius: 30rpx;
+}
+
+.header .searchBox .searchIcon {
+    position: absolute; /* 不占searchBox的位置。 */
+    left: 10rpx;
+}
+
+.header .searchBox input {
+    margin-left: 50rpx;
+    height: 60rpx;
+}
+
+.placeholder {
+    /* color: #d43c33; */
+    font-size: 28rpx;
+}
+
+.header .searchBox .clear {
+    position: absolute;
+    z-index: 10;
+    right: 30rpx;
+    top: 0;
+    font-size: 30rpx;
+}
+
+.header .cancle {
+    width: 100rpx;
+    text-align: center;
+}
+
+/* 搜索结果列表。 */
+.searchContainer .searchContent {
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 24rpx;
+    color: #d43c33;
+    border-bottom: 1rpx solid #d43c33;
+}
+
+.searchContainer .searchItem {
+    display: flex;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.searchContainer .searchItem .searchResult {
+    flex: 1;
+    border-bottom: 1rpx solid #eee;
+    margin-left: 20rpx;
+    font-size: 26rpx;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 历史记录。 */
+.history {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 50rpx;
+    margin: 10rpx 0;
+}
+
+.history .title {
+    font-size: 28rpx;
+    height: 50rpx;
+}
+
+.history .historyItem {
+    height: 50rpx;
+    background-color: #ededed;
+    margin: 0 0 20rpx 20rpx;
+    padding: 0 30rpx;
+    font-size: 26rpx;
+    border-radius: 20rpx;
+}
+
+.history .delete {
+    position: absolute;
+    bottom: 10rpx;
+    right: 15rpx;
+    font-size: 36rpx;
+}
+
+/* 热搜列表。 */
+.hotContainer .title {
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    border-bottom: 1rpx solid #eee;
+}
+
+.hotContainer .hotList {
+    display: flex;
+    flex-wrap: wrap; /* 让元素在flex布局中 可以换行。 */
+}
+
+.hotContainer .hotList .hotItem {
+    width: 50%;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 26rpx;
+}
+
+.hotContainer .hotList .hotItem .order {
+    margin: 0 10rpx;
+}
+
+.hotContainer .hotList .hotItem image {
+    width: 35rpx;
+    height: 20rpx;
+    margin-left: 10rpx;
+}

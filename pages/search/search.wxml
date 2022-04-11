@@ -1,0 +1,48 @@
+<view class="searchContainer">
+
+    <!-- 头部区域。 -->
+    <view class="header">
+        <view class="searchBox">
+            <text class="iconfont icon-sousuo searchIcon"></text>
+            <input type="text" value="{{searchContent}}" placeholder="{{placeholderContent}}" placeholder-class='placeholder' bindinput='handleInputChange'/> 
+            <!-- 小程序中用这种方式给placeholder设置类名，属性名是固定的，属性值是自定义的。 然后通过属性值/类名给placeholder设置样式。 -->
+            <view class="clear" bindtap="clearSearchContent" hidden="{{!searchContent}}">X</view>
+            <!-- 这里不用wx:if和wx:else设置是否含有元素，用hidden表示元素始终存在，但xx情况下显示，xxx情况下不显示。相当于display中的block和none。 -->
+        </view>
+        <view class="cancle">取消</view>
+    </view>
+
+    <!-- 搜索结果列表。 -->
+    <!-- <block wx:if="{{searchList.length}}"> --> <!-- 由于函数节流，有的时候getSearchList函数不执行，不能及时清空searchList数组。 -->
+    <block wx:if="{{searchContent}}">
+        <view class="searchContainer">
+            <view class="searchContent">搜索内容：{{searchContent}}</view>
+            <view class="searchList">
+                <view class="searchItem" wx:for="{{searchList}}" wx:key="id">
+                    <text class="iconfont icon-sousuo"></text>
+                    <text class="searchResult">{{item.name}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+    
+    <block wx:else>
+        <!-- 历史记录。 -->
+        <view class="history" wx:if="{{historyList.length}}">
+            <text class="title">历史</text>
+            <text class="historyItem" wx:for="{{historyList}}" wx:key="{{item}}">{{item}}</text> <!-- key是每个item，即每个数组元素。 -->
+            <text class="iconfont icon-shanchu delete" bindtap="deleteSearchHistory"></text>
+        </view>
+        <!-- 热搜列表。 -->
+        <view class="hotContainer">
+            <view class="title">热搜榜</view>
+            <view class="hotList" >
+                <view class="hotItem" wx:for="{{hotList}}" wx:key="searchWord">
+                    <text class="order">{{index + 1}}</text>
+                    <text>{{item.searchWord}}</text>
+                    <image wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}"></image> <!-- 如果存在item.iconUrl的话，就显示该标签。 -->
+                </view>
+            </view>
+        </view>
+    </block>
+</view>

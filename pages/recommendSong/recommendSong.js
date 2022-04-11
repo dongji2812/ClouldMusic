@@ -38,9 +38,8 @@ Page({
 
     this.getReCommendList()
 
-    /* 把订阅写在onload中。因为onload中的代码只执行一次，订阅只需要发生一次，相当于监视，坐等发布消息/事件触发。
-       订阅消息/绑定事件。*/
-    PubSub.subscribe('switchType', (msg, type) => {
+    /* 把订阅写在onload中。因为onload中的代码只执行一次，订阅只需要发生一次，相当于监视，坐等发布消息/事件触发。*/
+    PubSub.subscribe('switchType', (msg, type) => { /* 订阅消息/绑定事件。 */
       //console.log(msg, type)
       let {recommendList, index} = this.data /* 因为index要被修改，所以是let。 */
       if (type === 'pre') {
