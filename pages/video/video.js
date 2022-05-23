@@ -10,7 +10,7 @@ Page({
     videoList: [],
     videoId: '',
     videoUpdateTime: [],
-    isTriggered: false
+    isTriggered: false //标识下拉刷新是否被触发。
   },
 
   /**
@@ -60,7 +60,9 @@ Page({
     })
   },
 
-  /* 点击 视频播放时/图片时 的回调 */
+  /* 点击 视频播放时/图片时 的回调。
+    解决多个视频同时播放的问题。
+  */
   handlePlay(event) {
     let vid = event.currentTarget.id
     this.setData({
@@ -72,20 +74,20 @@ Page({
     /* 这段代码解决 多个视频同时播放的问题。 点击下个视频的时候，关闭上个视频。 后来优化为图片后，不存在这个问题了。 */
     //this.vid = vid
 
-    this.videoContext = wx.createVideoContext(vid)
+    this.videoContext = wx.createVideoContext(vid) //创建实例对象。
     const {videoUpdateTime} = this.data
     const videoItem = videoUpdateTime.find(item => item.vid === event.currentTarget.id)
     if (videoItem) {
-      this.videoContext.seek(videoItem.currentTime)
+      this.videoContext.seek(videoItem.currentTime) //跳转至指定的播放位置。
     }
     this.videoContext.play()
   },
 
-  /* 视频实时播放 的回调。 */
+  /* 视频实时播放/监听视频播放进度 的回调。 */
   handleTimeUpdate(event) {
     const {videoUpdateTime} = this.data
     const videoItem = videoUpdateTime.find(item => item.vid === event.currentTarget.id)
-    if (videoItem) {
+    if (videoItem) { //之前播放过。
       videoItem.currentTime = event.detail.currentTime
     } else {
       const videoTimeObj = {vid: event.currentTarget.id, currentTime: event.detail.currentTime}

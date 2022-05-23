@@ -31,7 +31,7 @@
 .user-box image {
     width: 130rpx;
     height: 130rpx;
-    border:5rpx solid #fff;
+    border: 5rpx solid #fff;
     border-radius: 50%;
 }
 

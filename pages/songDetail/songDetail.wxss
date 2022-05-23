@@ -24,7 +24,7 @@
     z-index: 99;
     width: 192rpx;
     height: 274rpx;
-    transform: rotate(-20deg);
+    transform: rotate(-20deg); /* 负值表示逆时针旋转。 */
     transform-origin: 40rpx 0; /* 设置旋转中心点。 */
     transition: transform 1s;
 }

@@ -23,15 +23,18 @@
         class="videoScroll" 
         scroll-y 
         refresher-enabled 
-        bindrefresherrefresh="handleRefresher" 
         refresher-triggered="{{isTriggered}}"
+        bindrefresherrefresh="handleRefresher" 
         bindscrolltolower="handleToLower"
     >
-    <!-- refresher-enabled是开启/允许 自定义刷新。 
-        bindrefresherrefresh是 设置自定义刷新时的回调。 ""内表示是回调函数。
+    <!-- refresher-enabled是开启/允许 自定义刷新。
+
         refresher-triggered表示 刷新是否被触发。  {{}}内表示是变量。
-        若刷新被触发则 自动显示三个点以及页面向下拉伸，但 关闭三个点以及页面复位 需要手动操作。  
-        bindscrolltolower是 设置scroll-view滚动到底部/右边时，内容已全部加载完毕时的回调。
+
+        bindrefresherrefresh是自定义下拉刷新的回调。 ""内表示是回调函数。
+        若刷新被触发则 自动显示三个点以及页面向下拉伸，但 关闭三个点以及页面复位 需要手动操作。
+
+        bindscrolltolower是自定义上拉触底的回调。 当scroll-view滚动到底部/右边时，内容已全部加载完毕时的回调。
     -->
 
         <view class="videoItem" wx:for="{{videoList}}" wx:key="id"> <!-- 这个id是自己自定义 给每个item加的。 -->
@@ -47,7 +50,7 @@
                 bindtimeupdate="handleTimeUpdate"
                 bindended="handleEnded"
             ></video>
-            <!-- poster是视频封面。 object-fit是视频如何在video容器中呈现。 -->
+            <!-- poster是视频封面。 object-fit是视频在video容器中如何呈现。 -->
             <!-- bindtimeupdate是 设置视频实时播放时的回调。 bindended是 设置视频播放结束时的回调。 -->
             <image wx:else class="common" src="{{item.data.coverUrl}}" bindtap="handlePlay" id="{{item.data.vid}}"></image>
             <!-- 视频内容介绍。 -->
@@ -65,7 +68,8 @@
                         <text class="iconfont icon-pinglun"></text>
                         <text class="count">{{item.data.commentCount}}</text>
                     </text>
-                    <button class="item btn" open-type="share"> <!-- 两个类名。 -->
+                    <button class="item btn" open-type="share"> <!-- class有两个类名。 -->
+                    <!-- open-type="share"实现了按钮的转发功能，弹出的转发提示框中的图片 是当前转发页面的快照，在哪个页面进行的转发就是哪个页面的快照。-->
                         <text class="iconfont icon-gengduo"></text>
                     </button>
                 </view>

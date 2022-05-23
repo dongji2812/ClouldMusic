@@ -45,7 +45,7 @@ Page({
       const topListItem = {name: topListData.playlist.name, tracks: topListData.playlist.tracks.slice(0, 3)}
       resArr.push(topListItem)
       
-      this.setData({
+      this.setData({ //不需要等待五次请求全部结束才更新，用户体验较好，但是渲染次数会多一些。
         topList: resArr
       })
     }

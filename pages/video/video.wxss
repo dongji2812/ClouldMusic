@@ -35,7 +35,7 @@
 
 .navScroll .navItem .navContent { 
     height: 60rpx;
-    box-sizing: border-box; /* 下面的border不会占据盒子高度，盒子高度仍是height60rpx。这样父盒子才能装得下该盒子。 */
+    box-sizing: border-box; /* IE怪异盒模型的height属性的范围包含了border、padding和content。这样父盒子才能装得下该盒子。 */
 }
 
 .navScroll .navItem .active {
@@ -113,4 +113,4 @@
 
 .comments_praised .btn:after { /* 这是做什么？？ */
     border: none;
-  }
+}

@@ -41,8 +41,8 @@ Page({
     /* 创建音乐实例，保存到this中。 */
     this.backgroundAudioManager = wx.getBackgroundAudioManager()
 
-    /* 实例的监听函数们：播放/暂停/停止/自然结束/实时播放。
-       监听函数的作用是一旦播放/暂停/停止 就会执行该回调函数。 监听isPlay的值，更新到data中。*/
+    /* 实例的监听函数们：播放/暂停/关闭/自然结束/实时播放。
+       监听函数的作用是一旦播放/暂停/关闭/自然结束/实时播放 就会执行该回调函数。 监听isPlay的值，更新到data中。*/
     this.backgroundAudioManager.onPlay(() => { /* 该事件的参数是一个回调函数，事件一触发就调用该回调函数。 */
       this.changePlayState(true)
       appInstance.globalData.musicId = musicId /* 修改 全局实例对象中 的状态。 */
@@ -54,8 +54,7 @@ Page({
       this.changePlayState(false)
     })
     this.backgroundAudioManager.onEnded(() => {
-      PubSub.publish('switchType', 'next') /* 发布消息，切换为下一首。  也能实现 点击上一首/下一首的回调函数中的 自动播放？？*/
-     /* 根本就不会发请求。 */
+      this.handlePubSub('next')  /* 调用函数，函数中包括消息订阅和消息发布，代码意思是切换到下一首。   实参可以传字符串。 */
       this.setData({
         currentTime: '00:00',
         currentWidth: 0
@@ -97,7 +96,7 @@ Page({
     })
   },
 
-  /* 播放/暂停 的功能函数。单独拎出来写了，没有写在点击播放/暂停按钮 的回调中。 */
+  /* 自动播放/暂停 的功能函数。单独拎出来写了，没有写在点击播放/暂停按钮 的回调中。 */
   async musicControl(isPlay, musicId, musicLink) {
     if (isPlay) {
       if (!musicLink) { /* 如果相同歌曲播放/暂停，不需要再次发请求。   性能优化，控制函数的形参musicLink，传与不传决定是否发请求。*/
@@ -128,6 +127,10 @@ Page({
     const type = event.currentTarget.id
 
     this.backgroundAudioManager.stop() /* 停止当前音乐。 */
+    this.handlePubSub(type)
+  },
+
+  handlePubSub(type) {
     PubSub.subscribe('musicId', (msg, musicId) => { /* 订阅消息/绑定事件。*/ 
       //console.log(musicId)
       this.getMusicInfo(musicId) /* 点击切换上/下一首后，更新当前音乐详细信息。 */
@@ -143,7 +146,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

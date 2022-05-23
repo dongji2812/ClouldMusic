@@ -22,7 +22,7 @@ Page({
     this.setData({
       userInfo: JSON.parse(userInfo) /* json对象转换为js对象，赋值给data中的userInfo。 */
     })
-    this.getrecentPlayList(this.data.userInfo.userId) /* 调用该函数。 */
+    this.getrecentPlayList(this.data.userInfo.userId) /* 调用下面函数。 */
   },
 
   async getrecentPlayList(userId) {

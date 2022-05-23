@@ -3,7 +3,7 @@
     <!-- 摇杆图片。 -->
     <view class="circle"></view>
     <image class="needle {{isPlay && 'needleRomate'}}" src="/static/images/song/needle.png"></image>
-    <!-- needleRomate是动态类名。应该写在{{}}中。 {{}}中是变量，类名要加''，不然就会当做变量。双引号中应该加单引号。
+    <!-- {{}}中isPlay是变量，needleRomate是动态类名，类名要加引号，不然就会当做变量。双引号中应该加单引号。
          前面isPlay为真，才会执行后面。或者用三元运算符isPlay？'needleRomate':''
     -->
 

@@ -38,7 +38,7 @@ Page({
     })
   },
 
-  /* 表单项实时更新 的回调。 */
+  /* 表单项实时更新 的回调。搜索联想功能。 */
   handleInputChange(event) {
     const searchContent = event.detail.value
     this.setData({
@@ -62,6 +62,7 @@ Page({
       })
       return
     }
+    
     const searchListData = await request('/search', {keywords: searchContent, limit: 10})
     this.setData({
       searchList: searchListData.result.songs
@@ -75,6 +76,7 @@ Page({
     this.setData({
       historyList 
     })
+
     wx.setStorageSync('searchHistory', historyList)
   },
 
