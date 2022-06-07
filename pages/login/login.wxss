@@ -1,0 +1,81 @@
+.loginContainer {
+    position: relative;
+    height: 100%;
+}
+
+.hello {
+    position: relative;
+    top: 70rpx;
+    left: 50rpx;
+    margin-bottom: 50rpx;
+    font-size: 46rpx;
+    color: #555;
+}
+
+.input-box {
+    margin: 50rpx;
+    padding: 60rpx;
+}
+
+.input-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 侧轴/x轴上 从左到右，左对齐。 */
+    justify-content: center;
+    height: 120rpx;
+    padding: 0 30rpx;
+    margin-bottom: 50rpx;
+    background:#f8f6fc;
+    border-radius: 4px;
+}
+
+.input-item:last-child{
+    margin-bottom: 0;
+}
+
+.input-item .title {
+    height: 50rpx;
+    font-size: 30rpx;
+    line-height: 56rpx;
+    color: #606266;
+}
+
+.input-item input{
+    height: 60rpx;
+    width: 100%;
+    font-size: 30rpx;
+    color: #303133;
+}
+
+.confirm-btn { /* button有默认的样式。 */
+    width: 630rpx!important;
+    height: 76rpx;
+    margin-top: 50rpx;
+    padding: 0;
+    background: #d43c33;
+    font-size: 32rpx;
+    color: #fff;
+    line-height: 76rpx;
+    border-radius: 50rpx; 
+}
+
+.forget {
+    margin-top: 40rpx;
+    font-size: 28rpx;
+    color: #4399fc;
+    text-align: center;
+}
+
+.register {
+    position: absolute;
+    bottom: 50rpx;
+    width: 100%; /* 所以下面text-align: center; 可以实现效果。 */
+    font-size: 28rpx;
+    color: #606266;
+    text-align: center; 
+}
+
+.register text {
+    margin-left: 10rpx;
+    color: #4399fc;
+}

@@ -1,0 +1,34 @@
+<view class="songDetailContainer">
+    <text class="musician">{{song.ar[0].name}}</text>
+    <!-- 摇杆图片。 -->
+    <view class="circle"></view>
+    <image class="needle {{isPlay && 'needleRomate'}}" src="/static/images/song/needle.png"></image>
+    <!-- {{}}中isPlay是变量，needleRomate是动态类名，类名要加引号，不然就会当做变量。双引号中应该加单引号。
+         前面isPlay为真，才会执行后面。或者用三元运算符isPlay？'needleRomate':''
+    -->
+
+    <!-- 磁盘图片+歌曲图片。 -->
+    <view class="discContainer {{isPlay && 'discAnimation'}}">
+        <image class="disc" src="/static/images/song/disc.png"></image>
+        <image class="musicPic" src="{{song.al.picUrl}}"></image>
+    </view>
+
+    <!-- 进度条区域。 -->
+    <view class="progressControl">
+        <text>{{currentTime}}</text>
+        <view class="barControl">
+            <view class="barCurrentTime" style="width: {{currentWidth + 'rpx'}}"> <!-- 加单位。注意两个位置 都需要引号。 -->
+                <view class="circle"></view>
+            </view>
+        </view>
+        <text>{{durationTime}}</text>
+    </view>
+    <!-- 底部区域。 -->
+    <view class="musicControl">
+        <text class="iconfont icon-24gl-shuffle"></text>
+        <text class="iconfont icon-shangyishoushangyige" bindtap="handleSwitch" id="pre"></text>
+        <text class="iconfont big {{isPlay?'icon-zanting':'icon-bofang'}}" bindtap="handleMusicPlay"></text>
+        <text class="iconfont icon-xiayigexiayishou" bindtap="handleSwitch" id="next"></text>
+        <text class="iconfont icon-liebiao"></text>
+    </view>
+</view>

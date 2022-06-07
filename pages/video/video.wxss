@@ -1,0 +1,116 @@
+/* 头部区域。 */
+.header {
+    display: flex;
+    padding: 10rpx;
+}
+
+.header image {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.header .search {
+    flex: 1;
+    border: 1rpx solid #eee;
+    margin: 0 20rpx;
+    font-size: 26rpx;
+    color: #d43c33;
+    text-align: center;
+    line-height: 60rpx;
+}
+
+/* 导航区域。 */
+.navScroll {
+    display: flex;
+    white-space: nowrap; /* navScroll横向滑动，当横向宽度不够时，默认将文字换行。这里设置为不换行*/
+    height: 60rpx;
+}
+
+.navScroll .navItem { /* flex布局，横向排列。子元素大小由内容撑开，不能设置其宽度。可以设置其高度。 */
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    height: 60rpx; /* 父盒子content内容区域的高度是60rpx，子盒子的盒子大小最大为60rpx。 */
+    line-height: 60rpx;
+}
+
+.navScroll .navItem .navContent { 
+    height: 60rpx;
+    box-sizing: border-box; /* IE怪异盒模型的height属性的范围包含了border、padding和content。这样父盒子才能装得下该盒子。 */
+}
+
+.navScroll .navItem .active {
+    border-bottom: 1rpx solid #d43c33;
+}
+
+/* 视频区域。 */
+.videoScroll {
+    height: calc(100vh - 154rpx); /* 不同的机型，scroll-view的高度应该是不同的。 这里需要动态计算。 */
+     /* 给scroll-view一个固定高度，才能实现scroll-view竖直方向上的滚动。 */
+    margin-top: 10rpx;
+}
+
+.videoScroll .videoItem {
+    padding: 5rpx 3%;
+}
+
+/* 视频。 */
+.videoItem .common {
+    width: 100%;
+    height: 360rpx;
+    border-radius: 10rpx;
+}
+
+/* 视频内容介绍。 */
+.videoItem .content {
+    height: 80rpx;
+    font-size: 26rpx;
+    line-height: 80rpx;
+    max-width: 500rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* 视频作者及视频热度。 */
+.videoItem .footer {
+    border-top: 1rpx solid #eee;
+    padding: 20rpx 0;
+}
+
+.videoItem .footer image {
+    width: 60rpx;
+    height: 60rpx;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+.videoItem .footer .nickName {
+    margin-left: 20rpx;
+    font-size: 26rpx;
+    vertical-align: middle;
+}
+
+.videoItem .footer .comments_praised {
+    float: right;
+}
+
+.comments_praised .item {
+    margin-left: 50rpx;
+    position: relative;
+}
+
+.comments_praised .item .count {
+    position: absolute;
+    top: -20rpx; /* 只上移就可以了。 */
+    font-size: 20rpx;
+  }
+
+.comments_praised .btn { 
+    display: inline;
+    padding: 0; /* 按钮有自己的属性，这里自己重新设置一下。 */
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.comments_praised .btn:after { /* 这是做什么？？ */
+    border: none;
+}
